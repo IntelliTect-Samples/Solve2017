@@ -1,10 +1,10 @@
 # Solve2017
-Code to solve the finding of number between 1 and 100 using mathmatical operations on the numbers 2,0,1,7.
+Code to find mathmatical expressions that evaluation to numbers between 1 and 100 using only the numbers 2,0,1,7.
 
 The original problem statement is found here. http://mathforum.org/yeargames/
 With extended rules here: http://mathforum.org/yeargameWorksheets/2017/2017.rules.html
 
-Note that this was just for fun and the code doesn't meet any particular standart aside from hopefully working. Don't use it as an example of how to write great code.
+Note that this was just for fun and the code doesn't meet any particular coding standard aside from hopefully working. Don't use it as an example of how to write great code.
 Also, there are a number of things left intentionally commented out that are there as experiments.
 
 Here is a description of the solution in the code.
