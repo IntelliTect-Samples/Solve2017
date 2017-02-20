@@ -88,7 +88,7 @@ namespace Solve2017
                             {
                                 myDigits[ArgumentIndex] =
                                     string.Format(OperatorString,
-                                        Previous.DigitCalculations[ArgumentIndex]);
+                                        previousDigits[ArgumentIndex]);
                             }
                             else
                             {

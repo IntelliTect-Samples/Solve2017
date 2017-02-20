@@ -24,11 +24,11 @@ namespace Solve2017
 
             var binaryOperators = new List<BinaryOperator>()
             {
-                new BinaryOperator("({0}+{1})", (arg1, arg2) => arg1+arg2),
-                new BinaryOperator("({0}-{1})", (arg1, arg2) => arg1-arg2),
-                new BinaryOperator("({0}*{1})", (arg1, arg2) => arg1*arg2),
-                new BinaryOperator("({0}/{1})", (arg1, arg2) => arg1/arg2),
-                new BinaryOperator("({0}^{1})", (arg1, arg2) => Math.Pow(arg1,arg2)),
+                new BinaryOperator("({0} + {1})", (arg1, arg2) => arg1+arg2),
+                new BinaryOperator("({0} - {1})", (arg1, arg2) => arg1-arg2),
+                new BinaryOperator("({0} * {1})", (arg1, arg2) => arg1*arg2),
+                new BinaryOperator("({0} / {1})", (arg1, arg2) => arg1/arg2),
+                new BinaryOperator("({0} ^ {1})", (arg1, arg2) => Math.Pow(arg1,arg2)),
                 // This doesn't work because there isn't a simple modulus operator in the Math library. And Mod isn't allowed in this solution.
                 //new BinaryOperator("({0}%{1})", (arg1, arg2) => Mod(arg1,arg2)),
             };
@@ -104,7 +104,7 @@ namespace Solve2017
                 // Loop until we don't find any new digit combinations. 
             } while (gotResults);
 
-
+            // Get a list of all numbers found. 
             var finalResult = new List<Digits>();
             foreach (var result in intermediateResults)
             {
@@ -116,15 +116,24 @@ namespace Solve2017
             }
 
             int count = 0;
-            foreach (var digit in finalResult.OrderBy(f => f[0]))
+            for (double i = 1; i <= 100; i++)
             {
-                if (digit[0] > 0 && digit[0] <= 100)
+                var digit = finalResult.FirstOrDefault(f => f[0] == i);
+                if (digit != null)
                 {
                     count++;
-                    Console.WriteLine($"{ digit[0]} = { digit.DigitCalculations[0] }");
+                    var value = digit[0];
+                    var expression = digit.DigitCalculations[0];
+                    Console.WriteLine($"{ i } = { expression }");
+                }
+                else
+                {
+                    Console.WriteLine($"{ i } = ?");
                 }
             }
-            Console.WriteLine($"Total: {count}");
+
+            Console.WriteLine($"Total between 1 and 100: {count}");
+            Console.WriteLine($"Total found: {finalResult.Count}");
             Console.ReadLine();
 
         }
