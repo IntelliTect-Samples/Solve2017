@@ -10,6 +10,7 @@ namespace Solve2017
     {
         static void Main(string[] args)
         {
+            DateTime startTime = DateTime.Now;
             var intermediateResults = new IntermediateResults();
 
 
@@ -77,9 +78,11 @@ namespace Solve2017
             bool gotResults = false;
             do
             {
+                var thisIterationList = intermediateResults.Values.Where(f => !f.IsProcessed).ToArray();
+                //var thisIterationList = intermediateResults.Values.ToArray();
                 gotResults = false;
                 // Handle unary  sqrt, factorial, etc. 
-                foreach (Digits digits in intermediateResults.Values.ToArray())
+                foreach (Digits digits in thisIterationList)
                 {
                     foreach (UnaryOperator unaryOperator in unaryOperators)
                     {
@@ -91,7 +94,7 @@ namespace Solve2017
                 }
 
                 // Handle binary  +, -, *, etc.
-                foreach (Digits digits in intermediateResults.Values.ToArray())
+                foreach (Digits digits in thisIterationList)
                 {
                     foreach (BinaryOperator binaryOperator in binaryOperators)
                     {
@@ -100,6 +103,7 @@ namespace Solve2017
                             gotResults |= intermediateResults.Add(digits, binaryOperator, i);
                         }
                     }
+                    digits.IsProcessed = true;
                 }
                 // Loop until we don't find any new digit combinations. 
             } while (gotResults);
@@ -134,6 +138,7 @@ namespace Solve2017
 
             Console.WriteLine($"Total between 1 and 100: {count}");
             Console.WriteLine($"Total found: {finalResult.Count}");
+            Console.WriteLine($"Total Time: {(DateTime.Now - startTime).TotalMilliseconds}ms");
             Console.ReadLine();
 
         }

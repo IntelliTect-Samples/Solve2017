@@ -32,6 +32,8 @@ namespace Solve2017
         /// The digits before this operation is performed
         /// </summary>
         public Digits Previous { get; set; }
+        // True once we have tried all the combinations on this set of digits.
+        public bool IsProcessed { get; set; }
 
         public string OperatorString { get; set; }
         /// <summary>
