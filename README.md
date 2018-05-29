@@ -1,6 +1,8 @@
 # Solve2017
 Code to find mathmatical expressions that evaluation to numbers between 1 and 100 using only the numbers 2,0,1,7.
 
+Check it out at: https://repl.it/@ericksong/solve2017
+
 The original problem statement is found here. http://mathforum.org/yeargames/
 With extended rules here: http://mathforum.org/yeargameWorksheets/2017/2017.rules.html
 
