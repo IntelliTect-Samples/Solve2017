@@ -37,7 +37,7 @@ namespace Solve2017
             var start = new List<string>() { "2", "0", "1", "7" };
 
             // Generate all the Permutations
-            foreach (var nums in GetPermutations(start, start.Count))
+            foreach (var nums in GetPermutations(start))
             {
                 //Console.WriteLine(string.Join(" ", nums));
                 intermediateResults.Add(new Digits(nums));
@@ -215,16 +215,30 @@ namespace Solve2017
         }
 
 
-        // Copied from Stack Overflow
-        static IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> list, int length)
+        // Generate all the Permutations
+        foreach (var nums in GetPermutations(start))
         {
-            if (length == 1) return list.Select(t => new T[] { t });
+            //Console.WriteLine(string.Join(" ", nums));
+            intermediateResults.Add(new Digits(nums));
+            AddAllDecimals(nums.ToList(), intermediateResults);
 
-            return GetPermutations(list, length - 1)
-                .SelectMany(t => list.Where(e => !t.Contains(e)),
-                    (t1, t2) => t1.Concat(new T[] { t2 }));
+            // Combine numbers
+            var results = CombineOne(nums.ToList());
+
+            foreach (var result in results)
+            {
+                intermediateResults.Add(new Digits(result));
+
+                // Handle the decimal point
+                AddAllDecimals(result, intermediateResults);
+
+                // Get combinations
+                //foreach (var combo in GetAllCombos(result))
+                //{
+                //    intermediateResults.Add(new Digits(combo));
+                //}
+            }
         }
-
 
         // Copied from Stack Overflow
         public static List<List<T>> GetAllCombos<T>(List<T> list)
