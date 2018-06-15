@@ -215,29 +215,35 @@ namespace Solve2017
         }
 
 
-        // Generate all the Permutations
-        foreach (var nums in GetPermutations(start))
+        /// <summary>
+        /// Gets all permutations of the array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        static IEnumerable<List<T>> GetPermutations<T>(IEnumerable<T> list)
         {
-            //Console.WriteLine(string.Join(" ", nums));
-            intermediateResults.Add(new Digits(nums));
-            AddAllDecimals(nums.ToList(), intermediateResults);
-
-            // Combine numbers
-            var results = CombineOne(nums.ToList());
-
-            foreach (var result in results)
+            var result = new Dictionary<string, List<T>>();
+            if (list.Count() == 1)
             {
-                intermediateResults.Add(new Digits(result));
-
-                // Handle the decimal point
-                AddAllDecimals(result, intermediateResults);
-
-                // Get combinations
-                //foreach (var combo in GetAllCombos(result))
-                //{
-                //    intermediateResults.Add(new Digits(combo));
-                //}
+                result.Add("", list.ToList());
             }
+            else
+            {
+                foreach (var c in list)
+                {
+                    var allButThis = new List<T>(list);
+                    allButThis.Remove(c);
+                    var childPermutations = GetPermutations(allButThis);
+                    foreach (var child in childPermutations)
+                    {
+                        child.Insert(0, c);
+                        var key = new string(child.Select(f => Convert.ToChar(f)).ToArray());
+                        if (!result.ContainsKey(key)) result.Add(key, child);
+                    }
+                }
+            }
+            return result.Values;
         }
 
         // Copied from Stack Overflow
@@ -259,6 +265,7 @@ namespace Solve2017
             });
             return result;
         }
+
 
         /// <summary>
         /// Adds all combinations of decimals.
