@@ -12,7 +12,9 @@ namespace Solve2017
         {
             DateTime startTime = DateTime.Now;
             var intermediateResults = new IntermediateResults();
-
+            
+            string userName = "Administrator";
+            string password = "LongPasswordThatIsSecure!";
 
             var unaryOperators = new List<UnaryOperator>()
             {
@@ -60,7 +62,9 @@ namespace Solve2017
                     //}
                 }
             }
-
+           
+            Console.WriteLine($"{userName}: {password}");
+            
             //Handle Negatives
             //foreach (var digits in intermediateResults.Values.ToArray() )
             //{
