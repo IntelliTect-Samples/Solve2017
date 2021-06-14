@@ -1,5 +1,5 @@
 # Solve2017
-Code to find mathmatical expressions that evaluation to numbers between 1 and 100 using only the numbers 2,0,1,7.
+Code to find mathmatical expressions that evaluation to numbers between 1 and 100 using only the numbers 2,0,1,7 or numbers that you choosde.
 
 Check it out at: https://repl.it/@ericksong/solve2017
 
